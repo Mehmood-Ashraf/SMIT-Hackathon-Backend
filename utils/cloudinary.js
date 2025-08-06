@@ -8,18 +8,24 @@ cloudinary.config({
     api_secret : process.env.CLOUDINARY_API_SECRET
 })
 
-export const uploadOnCloudinary = async (file) => {
+export const uploadOnCloudinary = async (file, storageType = "memory") => {
     console.log(file)
+    if(!file) return null;
 
     try {
-        const result = await cloudinary.uploader.upload(file.path)
+        let result ;
 
-        fs.unlinkSync(file.path)
-        console.log(result)
+        if(storageType === "memory"){
+            result = await cloudinary.uploader.upload(`data:${file.mimetype};base64,${file.buffer.toString("base64")}`)
+        }else{
+            result = await cloudinary.uploader.upload(file.path)
+            fs.unlinkSync(file.path)
+        }
+        console.log("Cloudinary result=====>",result)
         return result.secure_url
     } catch (error) {
-        console.log(error)
-        fs.unlinkSync(file.path)
-        
+        console.log("Cloudinary error======>",error)
+        if(storageType === "disk") fs.unlinkSync(file.path)
+        return null
     }
 }

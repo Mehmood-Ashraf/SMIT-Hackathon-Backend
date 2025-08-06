@@ -1,12 +1,13 @@
 import express from "express";
 import { login, logout, register, resendOtp, forgetPassword, verifyOTP, resetPassword } from "../controllers/auth.controllers.js";
-import upload from "../middlewares/multer.js";
+// import upload from "../middlewares/multer.js";
 import { verifyToken } from "../middlewares/verifyToken.js";
 import { rateLimiter } from "../middlewares/rateLimiter.js";
+import { memoryUpload } from "../middlewares/multer.js";
 
 const router = express.Router()
 
-router.post('/register', upload.single("img"),  register)
+router.post('/register', memoryUpload.single("img"),  register)
 router.post('/verifyEmail', verifyOTP)
 router.post('/login', login)
 router.post('/logout', logout)

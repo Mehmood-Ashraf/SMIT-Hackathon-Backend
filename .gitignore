@@ -1,0 +1,23 @@
+# Node modules
+/node_modules/
+
+# Environment variables
+.env
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Optional: build files (if you're using build tool like Next.js/Vite/etc)
+.next/
+dist/
+build/
+
+# Optional: IDE settings
+.vscode/
+.idea/

@@ -27,7 +27,7 @@ app.use("/api/report", reportRoutes)
 const port = process.env.PORT;
 
 
-if (process.env.MODE === "development") {
+if (process?.env?.MODE === "development") {
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });

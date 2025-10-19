@@ -4,7 +4,7 @@ import { addFamilyMember, deleteFamilyMember, getFamilyMemberById, getFamilyMemb
 const router = express.Router();
 
 router.post('/add', addFamilyMember);
-router.get('/all', getFamilyMembers);
+router.get('/all/:id', getFamilyMembers);
 router.get('/:id', getFamilyMemberById);
 router.delete('/:id', deleteFamilyMember)
 

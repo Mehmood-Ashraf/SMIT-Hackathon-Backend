@@ -32,7 +32,7 @@ export const addReport = async (req, res) => {
         url: pdfUrl,
     });
     
-    pdfParser(newReport)
+    pdfParser(newReport, {file:req.file})
 
     const savedReport = await newReport.save();
 
